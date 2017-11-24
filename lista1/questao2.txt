@@ -1,0 +1,18 @@
+Hipótese:
+As entradas i,j da potência k de A ao número de caminhos distintos com tamanho k
+que ligam os vértices i e j.
+
+Considerando essa hipótese, podemos dizer que as entradas Aij da matriz de
+adjacências A representam quantos caminhos de tamanho 1 ligam os vértices i e j.
+Num grafo simples, essa quantidade pode ser no máximo 1, ou seja, o domínio das
+minhas entradas é {0, 1}. Sabemos que isso está correto por causa da própria
+definição de o que é uma matriz de adjacências.
+
+Expandindo esse conceito para potências de A, em A^2, A^2(ij) indica quantos
+caminhos com tamanho 2 existem ligando i e j.
+
+Como sabemos que isso é verdade para A^1, então podemos provar por indução que
+isso se aplica a qualquer potência de A.
+
+Na página da Wikipedia podemos encontrar essa prova:
+https://pt.wikipedia.org/wiki/Matriz_de_adjacência

@@ -1,0 +1,15 @@
+Listas de Adjacências:
+    Grafos sem peso:
+        Lista de vértices, onde cada vértice tem associado à ele uma lista com
+        todos os vértices que são seus vizinhos
+    Grafos com peso:
+        Cada vértice tem associado à ele uma lista com tuplas que representam
+        seus vizinhos com os respectivos pesos.
+
+Matriz de Adjacências:
+    Grafos sem peso:
+        As entradas Aij da matriz só podem ser 0s e 1s. Se i e j são adjacentes,
+        então Aij = 1. Se elas não são, Aij = 0.
+    Grafos com peso:
+        As entradas representam os pesos. Se i e j não são adjacentes, Aij = 0.
+        Se eles são, Aij = peso.
