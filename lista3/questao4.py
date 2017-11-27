@@ -26,9 +26,8 @@ class Grafo:
         self.adj_entrada[v].append(u)
         for w in self.adj_entrada[u]:
             if v not in self.adj_saida[w]:
-                self.adj_saida[w].append(v)
+                self.adj_saida[w].extend(v)
 
-    # BFS para ver se v é atingível a partir de u
     def converteChar(self, u, v):
         '''visitado, pilha = [], [u]
         while pilha:
