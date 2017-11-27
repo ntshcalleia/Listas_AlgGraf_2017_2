@@ -8,19 +8,29 @@
 
 class Grafo:
     def __init__(self):
-        self.adj = {}
+        self.adj_saida = {}
+        self.adj_entrada = {}
 
     def adicionaVertice(self, v):
-        self.adj[v] = []
+        if v not in self.adj_entrada:
+            self.adj_entrada[v] = []
+        if v not in self.adj_saida:
+            self.adj_saida[v] = []
 
     def adicionaAresta(self, u, v):
-        if u not in self.adj:
-            self.adicionaVertice(u)
-        self.adj[u].append(v)
+        self.adicionaVertice(u)
+        self.adicionaVertice(v)
+
+        self.adj_saida[u].append(v)
+        self.adj_saida[u].extend(self.adj_saida[v])
+        self.adj_entrada[v].append(u)
+        for w in self.adj_entrada[u]:
+            if v not in self.adj_saida[w]:
+                self.adj_saida[w].append(v)
 
     # BFS para ver se v é atingível a partir de u
     def converteChar(self, u, v):
-        visitado, pilha = [], [u]
+        '''visitado, pilha = [], [u]
         while pilha:
             vertice = pilha.pop()
             if vertice in self.adj:
@@ -29,7 +39,10 @@ class Grafo:
                         return True
                     if vizinho not in visitado:
                         visitado.append(vizinho)
-                        pilha.append(vizinho)
+                        pilha.append(vizinho)'''
+        if u in self.adj_saida:
+            if v in self.adj_saida[u]:
+                return True
 
         return False
 
@@ -50,22 +63,19 @@ def main():
 
     arq = input("Digite o nome ou endereço do arquivo: ")
 
-    try:
-        with open(arq) as f:
-            n, m = f.readline().split()
-            n = int(n)
-            m = int(m)
+    with open(arq) as f:
+        n, m = f.readline().split()
+        n = int(n)
+        m = int(m)
 
-            # Inicia lista de adjacências
-            for i in range(0, n):
-                u, v = f.readline().split()
-                grafo.adicionaAresta(u, v)
+        # Inicia lista de adjacências
+        for i in range(0, n):
+            u, v = f.readline().split()
+            grafo.adicionaAresta(u, v)
 
-            for i in range(0, m):
-                str1, str2 = f.readline().split()
-                print(grafo.converteString(str1, str2))
-    except:
-        print("Arquivo não encontrado")
+        for i in range(0, m):
+            str1, str2 = f.readline().split()
+            print(grafo.converteString(str1, str2))
 
 
 if __name__ == '__main__':
